@@ -21,6 +21,8 @@ http://react-component.github.io/notification/examples/simple.html
 
 目前我们在三个课堂使用了这些 antd 组件，需要提供替代控件，尽量保持接口兼容，在示例页面中展示。
 
+将 Button Badge Input Select Spin Checkbox Radio Breadcrumb Switch 改为自己实现的 React 组件，单独打包。
+
 ``` js
 export { default as Badge } from 'antd/lib/badge';
 export { default as Pagination } from 'antd/lib/pagination';
