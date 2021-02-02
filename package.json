@@ -2,12 +2,12 @@
   "name": "livod-ui",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/index.tsx",
-  "module": "./src/index.tsx",
+  "main": "./esm/index.js",
+  "module": "./esm/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./scripts/webpack.dev.js",
-    "build": "cross-env NODE_ENV=production webpack --config ./scripts/webpack.prod.js"
+    "build": "cross-env NODE_ENV=production gulp"
   },
   "keywords": [],
   "author": "",
@@ -17,9 +17,12 @@
     "@types/react-dom": "^17.0.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.1",
+    "gulp": "^4.0.2",
+    "gulp-typescript": "^6.0.0-alpha.1",
     "html-webpack-plugin": "^4.5.1",
     "less": "^4.1.1",
     "less-loader": "^8.0.0",
+    "merge2": "^1.4.1",
     "style-loader": "^2.0.0",
     "ts-loader": "^8.0.14",
     "typescript": "^4.1.3",
