@@ -1,10 +1,3 @@
-/*
- * @Description:
- * @Date: 2020-12-11 15:34:09
- * @Author: Jsmond2016 <jsmond2016@gmail.com>
- * @Copyright: Copyright (c) 2020, Jsmond2016
- */
-
 // 清理产出目录的插件
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
@@ -14,11 +7,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
 module.exports = {
-  entry: path.join(__dirname, "../src/index.tsx"),
   output: {
     // 输出目录
     path: path.resolve(__dirname, "../dist"),
-    filename: "[name].[hash].js",
+    filename: "[name].js",
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
@@ -42,8 +34,5 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      template: "public/index.html",
-    }),
   ],
 };
