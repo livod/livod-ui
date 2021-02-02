@@ -1,8 +1,7 @@
 import ReactDOM from "react-dom";
 import React, { useState } from "react";
 import Modal from "./components/Modal";
-
-import './style/index.css'
+import "./style/index.less";
 function TestModal() {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -23,7 +22,7 @@ function TestModal() {
     <React.Fragment>
       <button onClick={showModal}>open</button>
       <Modal
-        title="Basic Modal"
+        title="Basic"
         visible={isModalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
