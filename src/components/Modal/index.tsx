@@ -1,3 +1,4 @@
+/* eslint-disable import/first */
 import Modal from "react-overlays/Modal";
 import React from "react";
 import Button from "../Button";
