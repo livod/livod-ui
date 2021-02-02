@@ -14,10 +14,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
 module.exports = {
-  entry: "./src/index.tsx",
+  entry: path.join(__dirname, "../src/index.tsx"),
   output: {
     // 输出目录
-    path: path.resolve(__dirname, "./dist"),
+    path: path.resolve(__dirname, "../dist"),
     filename: "[name].[hash].js",
   },
   resolve: {
@@ -34,14 +34,16 @@ module.exports = {
         exclude: /node_modules/,
       },
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      {
+        test: /\.less$/,
+        use: ["style-loader", "css-loader", "less-loader"],
+      },
     ],
   },
   plugins: [
-    new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ["./dist"],
-    }),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: "./public/index.html",
+      template: "public/index.html",
     }),
   ],
 };
