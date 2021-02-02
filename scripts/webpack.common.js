@@ -1,9 +1,6 @@
 // 清理产出目录的插件
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
-//  产出 html 的插件
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-
 const path = require("path");
 
 module.exports = {
