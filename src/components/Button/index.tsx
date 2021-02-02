@@ -30,7 +30,7 @@ const Button: React.FC<ButtonProps> = (props) => {
       onClick={props.onClick}
       className={"livid-button " + correctTypeProp(props.type)}
     >
-      <div className="livid-loading"></div>
+      {props.confirmLoading && <span className="livid-loading"></span>}
       {props.children}
     </button>
   );

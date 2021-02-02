@@ -12,13 +12,22 @@ interface MyModalProps {
   okText?: string;
   cancelText?: string;
   children?: any;
+  confirmLoading?: boolean;
 }
 
 const MyModal: React.FC<MyModalProps> = (props) => {
   const renderBackdrop = (props) => (
     <div className="livod-backdrop" {...props} />
   );
-  const { children, visible, onCancel, cancelText, okText, onOk } = props;
+  const {
+    children,
+    visible,
+    onCancel,
+    cancelText,
+    okText,
+    onOk,
+    confirmLoading,
+  } = props;
   return (
     <Modal
       show={visible}
@@ -49,7 +58,7 @@ const MyModal: React.FC<MyModalProps> = (props) => {
         <div className="livod-modal-body">{children || {}}</div>
         <div className="livod-modal-footer">
           <Button onClick={onCancel}>{cancelText}</Button>
-          <Button type="primary" onClick={onOk}>
+          <Button type="primary" onClick={onOk} confirmLoading={confirmLoading}>
             {okText}
           </Button>
         </div>
