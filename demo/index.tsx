@@ -1,35 +1,76 @@
 import ReactDOM from "react-dom";
-import React, { useState } from "react";
-import {Modal} from "../src";
+import React from "react";
+import { Modal, Button } from "../src";
 import "../src/style/index.less";
-function TestModal() {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const showModal = () => {
-    setIsModalVisible(true);
+class App extends React.Component {
+  state = {
+    loading: false,
+    visible: false,
   };
 
-  const handleOk = () => {
-    console.log(1);
-    setIsModalVisible(false);
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
   };
 
-  const handleCancel = () => {
-    setIsModalVisible(false);
+  handleOk = () => {
+    this.setState({ loading: true });
+    setTimeout(() => {
+      this.setState({ loading: false, visible: false });
+    }, 3000);
   };
 
-  return (
-    <React.Fragment>
-      <button onClick={showModal}>open</button>
-      <Modal
-        title="Basic"
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
-        <div>hello world</div>
-      </Modal>
-    </React.Fragment>
-  );
+  handleCancel = () => {
+    this.setState({ visible: false });
+  };
+
+  render() {
+    const { visible, loading } = this.state;
+    return (
+      <>
+        <Button type="primary" onClick={() => Modal.confirm({
+          title: "hello",
+          content: "this is some description",
+          okType: "danger",
+          onOk:() => {
+            return new Promise(res => {
+              setTimeout(() => {
+                res(1)
+              }, 3000)
+            })
+          },
+          okButtonProps:{
+            disabled: true
+          }
+        })}>
+          Open Modal with customized footer
+        </Button>
+        <Modal
+          visible={visible}
+          title="Title"
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+          footer={[
+            <Button
+              key="submit"
+              type="primary"
+              loading={loading}
+              onClick={this.handleOk}
+            >
+              Submit
+            </Button>,
+          ]}
+        >
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+        </Modal>
+      </>
+    );
+  }
 }
-ReactDOM.render(<TestModal></TestModal>, document.querySelector("#container"));
+
+ReactDOM.render(<App />, document.querySelector("#container"));
