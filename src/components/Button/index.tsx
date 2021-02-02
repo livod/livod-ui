@@ -54,18 +54,38 @@ const LivodButton = styled.button`
   }
 `;
 
-interface ButtonProps{
-  type?: string,
-  onClick?: Function,
-  children?: any,
+interface ButtonProps {
+  type?: string;
+  onClick?: Function;
+  children?: any;
+  confirmLoading?: boolean;
+}
+/**
+ * @param type 传入type prop
+ * @param correctedType 返回正确的类名
+ */
+function correctTypeProp(type: string) {
+  let correctedType: string = "";
+  const PRIMARY = "primary";
+  switch (type) {
+    case PRIMARY:
+      correctedType = PRIMARY;
+      break;
+    default:
+      correctedType = "";
+  }
+  return correctedType;
 }
 
-const Button:React.FC<ButtonProps> = (props) => {
+const Button: React.FC<ButtonProps> = (props) => {
   return (
-    <LivodButton onClick={props.onClick} className={props.type}>
+    <LivodButton
+      onClick={props.onClick}
+      className={correctTypeProp(props.type)}
+    >
       {props.children}
     </LivodButton>
   );
-}
+};
 
-export default Button
+export default Button;
