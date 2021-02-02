@@ -5,7 +5,8 @@ interface ButtonProps {
   type?: string;
   onClick?: (event: MouseEvent) => void;
   children?: any;
-  confirmLoading?: boolean;
+  loading?: boolean;
+  disabled?: boolean;
 }
 /**
  * @param type 传入type prop
@@ -14,9 +15,13 @@ interface ButtonProps {
 function correctTypeProp(type: string) {
   let correctedType: string = "";
   const PRIMARY = "primary";
+  const DANGER = "danger";
   switch (type) {
     case PRIMARY:
       correctedType = PRIMARY;
+      break;
+    case DANGER:
+      correctedType = DANGER;
       break;
     default:
       correctedType = "";
@@ -25,13 +30,21 @@ function correctTypeProp(type: string) {
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
+  const {
+    onClick,
+    type,
+    disabled,
+    loading,
+    children
+  } = props
   return (
     <button
-      onClick={props.onClick}
-      className={"livid-button " + correctTypeProp(props.type)}
+      onClick={onClick}
+      className={"livod-button " + correctTypeProp(type)}
+      disabled={disabled === true}
     >
-      {props.confirmLoading && <span className="livid-loading"></span>}
-      {props.children}
+      {loading && <span className="livod-loading"></span>}
+      {children}
     </button>
   );
 };
