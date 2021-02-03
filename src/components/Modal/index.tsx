@@ -9,7 +9,6 @@ import useConfirm, {
 } from "./hooks/useConfirm";
 
 import "./style/index.less";
-
 interface OriginLivodModalProps {
   title?: string;
   visible: boolean;
@@ -96,9 +95,9 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
     const extraStyle: any = {};
     width && (extraStyle.width = `${width}px`);
     height && (extraStyle.height = `${height}px`);
-    console.log(width);
     return Object.assign(style || {}, extraStyle);
   }, [width, height, style]);
+
   return (
     <Modal
       show={visible}
