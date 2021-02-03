@@ -1,0 +1,102 @@
+.livod-modal-footer {
+  padding: 10px 16px;
+  text-align: right;
+  background: 0 0;
+  border-top: 1px solid #f0f0f0;
+  border-radius: 0 0 2px 2px;
+}
+
+.livod-modal-body {
+  padding: 24px;
+  font-size: 14px;
+  line-height: 1.5715;
+  word-wrap: break-word;
+}
+.livod-modal-closex {
+  display: block;
+  width: 56px;
+  height: 56px;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 56px;
+  text-align: center;
+  text-transform: none;
+  text-rendering: auto;
+}
+.livod-modal-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.45);
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  background: 0 0;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+.livod-modal-header {
+  padding: 16px 24px;
+  color: rgba(0, 0, 0, 0.85);
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+  border-radius: 2px 2px 0 0;
+  box-sizing: border-box;
+}
+.livod-modal-title {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  word-wrap: break-word;
+}
+.livod-backdrop {
+  position: fixed;
+  z-index: 1040;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #000;
+  opacity: 0.5;
+}
+// we use some pseudo random coords so nested modals
+// don't sit right on top of each other.
+.livod-fixed-modal {
+  position: fixed;
+  width: 400px;
+  z-index: 1040;
+  top: 30%;
+  left: calc(50% - 200px);
+  background-color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+.ant-modal-confirm-title {
+  display: block;
+  overflow: hidden;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.4;
+}
+.ant-modal-confirm-content {
+  margin-top: 8px;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  margin-left: 38px;
+}
+.anticon-exclamation-circle {
+  float: left;
+  margin-right: 16px;
+  font-size: 22px;
+  line-height: 0;
+  &.warning {
+    color: #faad14;
+  }
+}
