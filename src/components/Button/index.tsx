@@ -2,7 +2,7 @@ import React, { MouseEvent } from "react";
 import "./style/index.less";
 
 interface ButtonProps {
-  type?: string;
+  type?: "primary" | "danger";
   onClick?: (event: MouseEvent) => void;
   children?: any;
   loading?: boolean;
@@ -30,13 +30,7 @@ function correctTypeProp(type: string) {
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const {
-    onClick,
-    type,
-    disabled,
-    loading,
-    children
-  } = props
+  const { onClick, type, disabled, loading, children } = props;
   return (
     <button
       onClick={onClick}

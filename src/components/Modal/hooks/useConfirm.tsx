@@ -1,61 +1,157 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { OriginLivodModal } from "../index";
+import { OriginLivodModal, destroy } from "../index";
+
+export type IconType = "success" | "error" | "info" | "warning";
 // confirm props接口
 export interface ConfirmOptions {
   title?: string;
-  content?: string;
+  content?: any;
   onOk?: (event: React.MouseEvent) => void | Promise<any>;
   onCancel?: () => void;
   okType?: "primary" | "danger";
+  icon?: IconType;
   okButtonProps?: {
-    disabled: boolean
-  }
+    disabled?: boolean;
+  };
   cancelButtonProps?: {
-    disabled: boolean
-  }
+    disabled?: boolean;
+  };
+  okText?: string;
+  cancelText?: string;
 }
 
 // confirm弹窗
 function useConfirm(props: ConfirmOptions) {
-  const { title, content, okType, okButtonProps, cancelButtonProps} = props;
+  const {
+    title = "some title",
+    content,
+    okType,
+    okButtonProps,
+    cancelButtonProps,
+    icon,
+    okText,
+    cancelText,
+  } = props;
   const node = document.createElement("div");
-  // 删除confirm及其相关组件
-  // 细节基于原生DOM，需要优化
-  const destroy = () => {
-    const nodeNext = node.nextElementSibling;
-    const nodeNextNext = nodeNext.nextElementSibling;
-    document.body.removeChild(node);
-    document.body.removeChild(nodeNext);
-    document.body.removeChild(nodeNextNext);
-  };
   const handleCancel = () => {
     props.onCancel && props.onCancel();
-    destroy();
+    destroy(node);
   };
   // 这里有处理promise的情况
   // 细节基于原生DOM，需要优化
   const handleOk = (event: React.MouseEvent) => {
     if (props.onOk) {
-      const promise:any = props.onOk(event);
+      const promise: any = props.onOk(event);
       if (promise instanceof Promise) {
-        let loadingEl = document.createElement('span')
-        loadingEl.className = "livod-loading"
-        event.currentTarget.insertBefore(loadingEl, event.currentTarget.lastChild)
+        let loadingEl = document.createElement("span");
+        loadingEl.className = "livod-loading";
+        event.currentTarget.insertBefore(
+          loadingEl,
+          event.currentTarget.lastChild
+        );
         promise.then(() => {
-          destroy()
-        })
-      }else{
-        destroy()
+          destroy(node);
+        });
+      } else {
+        destroy(node);
       }
     } else {
-      destroy();
+      destroy(node);
+    }
+  };
+  // 选择icon组件
+  const switchIcon = (icon: IconType) => {
+    switch (icon) {
+      case "info":
+        return (
+          <span
+            role="img"
+            aria-label="exclamation-circle"
+            className="info anticon-exclamation-circle"
+          >
+            <svg
+              viewBox="64 64 896 896"
+              focusable="false"
+              data-icon="info-circle"
+              width="1em"
+              height="1em"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
+              <path d="M464 336a48 48 0 1096 0 48 48 0 10-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z"></path>
+            </svg>
+          </span>
+        );
+      case "warning":
+        return (
+          <span
+            role="img"
+            aria-label="exclamation-circle"
+            className="warning anticon-exclamation-circle"
+          >
+            <svg
+              viewBox="64 64 896 896"
+              focusable="false"
+              data-icon="exclamation-circle"
+              width="1em"
+              height="1em"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
+              <path d="M464 688a48 48 0 1096 0 48 48 0 10-96 0zm24-112h48c4.4 0 8-3.6 8-8V296c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8z"></path>
+            </svg>
+          </span>
+        );
+      case "error":
+        return (
+          <span
+            role="img"
+            aria-label="exclamation-circle"
+            className="error anticon-exclamation-circle"
+          >
+            <svg
+              viewBox="64 64 896 896"
+              focusable="false"
+              data-icon="close-circle"
+              width="1em"
+              height="1em"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M685.4 354.8c0-4.4-3.6-8-8-8l-66 .3L512 465.6l-99.3-118.4-66.1-.3c-4.4 0-8 3.5-8 8 0 1.9.7 3.7 1.9 5.2l130.1 155L340.5 670a8.32 8.32 0 00-1.9 5.2c0 4.4 3.6 8 8 8l66.1-.3L512 564.4l99.3 118.4 66 .3c4.4 0 8-3.5 8-8 0-1.9-.7-3.7-1.9-5.2L553.5 515l130.1-155c1.2-1.4 1.8-3.3 1.8-5.2z"></path>
+              <path d="M512 65C264.6 65 64 265.6 64 513s200.6 448 448 448 448-200.6 448-448S759.4 65 512 65zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
+            </svg>
+          </span>
+        );
+      default:
+        return (
+          <span
+            role="img"
+            aria-label="exclamation-circle"
+            className="success anticon-exclamation-circle"
+          >
+            <svg
+              viewBox="64 64 896 896"
+              focusable="false"
+              data-icon="check-circle"
+              width="1em"
+              height="1em"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M699 353h-46.9c-10.2 0-19.9 4.9-25.9 13.3L469 584.3l-71.2-98.8c-6-8.3-15.6-13.3-25.9-13.3H325c-6.5 0-10.3 7.4-6.5 12.7l124.6 172.8a31.8 31.8 0 0051.7 0l210.6-292c3.9-5.3.1-12.7-6.4-12.7z"></path>
+              <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
+            </svg>
+          </span>
+        );
     }
   };
   document.body.append(node);
   ReactDOM.render(render(), node);
 
-  
   function render() {
     return (
       <OriginLivodModal
@@ -66,25 +162,10 @@ function useConfirm(props: ConfirmOptions) {
         okType={okType}
         okButtonProps={okButtonProps}
         cancelButtonProps={cancelButtonProps}
+        okText={okText}
+        cancelText={cancelText}
       >
-        <span
-          role="img"
-          aria-label="exclamation-circle"
-          className="warning anticon-exclamation-circle"
-        >
-          <svg
-            viewBox="64 64 896 896"
-            focusable="false"
-            data-icon="exclamation-circle"
-            width="1em"
-            height="1em"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"></path>
-            <path d="M464 688a48 48 0 1096 0 48 48 0 10-96 0zm24-112h48c4.4 0 8-3.6 8-8V296c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8z"></path>
-          </svg>
-        </span>
+        {switchIcon(icon)}
         {title && <span className="ant-modal-confirm-title">{title}</span>}
         {content && <div className="ant-modal-confirm-content">{content}</div>}
       </OriginLivodModal>
@@ -92,4 +173,22 @@ function useConfirm(props: ConfirmOptions) {
   }
 }
 
+// 生成特定组件(info, error, warning, success)
+// 本质上是调用useConfirm,传入特定icon字段
+const iconTypeArr = ["error", "info", "warning", "success"];
+export type SpecConfirmType = {
+  [p in IconType]: typeof useConfirm;
+};
+const specConfirm: SpecConfirmType = {} as SpecConfirmType;
+iconTypeArr.forEach(
+  (icon) =>
+    (specConfirm[icon] = (options: ConfirmOptions) => {
+      useConfirm(
+        Object.assign(options, {
+          icon,
+        })
+      );
+    })
+);
+export { specConfirm };
 export default useConfirm;

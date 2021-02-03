@@ -1,8 +1,12 @@
 /* eslint-disable import/first */
 import Modal from "react-overlays/Modal";
-import React, { ReactNode, useMemo } from "react";
+import React, { ReactNode, useMemo, useCallback } from "react";
 import Button from "../Button";
-import useConfirm, { ConfirmOptions } from "./hooks/useConfirm";
+import useConfirm, {
+  ConfirmOptions,
+  specConfirm,
+  SpecConfirmType,
+} from "./hooks/useConfirm";
 
 import "./style/index.less";
 
@@ -17,18 +21,22 @@ interface OriginLivodModalProps {
   confirmLoading?: boolean;
   footer?: (() => ReactNode) | ReactNode | ReactNode[];
   header?: boolean;
-  okType?: string;
+  okType?: "danger" | "primary";
   okButtonProps?: {
-    disabled: boolean;
+    disabled?: boolean;
   };
   cancelButtonProps?: {
-    disabled: boolean;
+    disabled?: boolean;
   };
+  style?: object;
+  width?: number;
+  height?: number;
 }
 
 export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
-  const renderBackdrop = (props) => (
-    <div className="livod-backdrop" {...props} />
+  const renderBackdrop = useCallback(
+    (props) => <div className="livod-backdrop" {...props} />,
+    []
   );
   const {
     children,
@@ -43,6 +51,9 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
     header,
     cancelButtonProps,
     okButtonProps,
+    style,
+    width,
+    height,
   } = props;
 
   /**
@@ -69,7 +80,7 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
       <Button
         disabled={okButtonProps.disabled}
         key="default-confirm"
-        type={okType}
+        type={okType || "primary"}
         onClick={onOk}
         loading={confirmLoading}
       >
@@ -78,6 +89,16 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
     ];
   }, [footer, confirmLoading]);
 
+  /**
+   * 对style进行处理
+   */
+  const convertedStyle = useMemo(() => {
+    const extraStyle: any = {};
+    width && (extraStyle.width = `${width}px`);
+    height && (extraStyle.height = `${height}px`);
+    console.log(width);
+    return Object.assign(style || {}, extraStyle);
+  }, [width, height, style]);
   return (
     <Modal
       show={visible}
@@ -85,9 +106,10 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
       renderBackdrop={renderBackdrop}
       aria-labelledby="modal-label"
       className="livod-fixed-modal"
+      style={convertedStyle}
     >
       <>
-        {header === false ? null : (
+        {header ? (
           <div className="livod-modal-header">
             <div className="livod-modal-title">{props.title}</div>
             <div className="livod-modal-close" onClick={onCancel}>
@@ -106,9 +128,11 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
               </div>
             </div>
           </div>
-        )}
+        ) : null}
         <div className="livod-modal-body">{children || null}</div>
-        <div className="livod-modal-footer">{footerMemo.map((v) => v)}</div>
+        <div className={"livod-modal-footer " + (header ? null : "no-border")}>
+          {footerMemo.map((v) => v)}
+        </div>
       </>
     </Modal>
   );
@@ -119,18 +143,45 @@ OriginLivodModal.defaultProps = {
   cancelText: "取消",
   onCancel: () => {},
   onOk: () => {},
+  header: true,
   okButtonProps: {
-    disabled: false
+    disabled: false,
   },
-  cancelButtonProps:{
-    disabled: false
-  }
+  cancelButtonProps: {
+    disabled: false,
+  },
 };
 
 const LivodModal = OriginLivodModal as typeof OriginLivodModal & {
   confirm: (options: ConfirmOptions) => void;
-};
+  destroyAll: () => void;
+} & SpecConfirmType;
+
+// 挂载特定confirm组件
+let specConfirmKeys = Object.keys(specConfirm);
+specConfirmKeys.forEach((key) => {
+  LivodModal[key] = specConfirm[key];
+});
+
 LivodModal.confirm = useConfirm;
 
+/**
+ * @param node 传入的挂载节点
+ * @description 利用原生DOM删除Modal组件
+ */
+export const destroy = (node) => {
+  const nodeNext = node.nextElementSibling;
+  const nodeNextNext = nodeNext.nextElementSibling;
+  document.body.removeChild(node);
+  document.body.removeChild(nodeNext);
+  document.body.removeChild(nodeNextNext);
+};
+// destroyAll方法删除页面上所有的模态框
+LivodModal.destroyAll = () => {
+  const nodeList = document.querySelectorAll(".livod-fixed-modal");
+  nodeList.forEach((v) =>
+    destroy(v.previousElementSibling.previousElementSibling)
+  );
+};
 
 export default LivodModal;

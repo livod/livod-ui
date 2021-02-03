@@ -72,8 +72,9 @@
   position: fixed;
   width: 400px;
   z-index: 1040;
-  top: 30%;
-  left: calc(50% - 200px);
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: white;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
@@ -99,4 +100,17 @@
   &.warning {
     color: #faad14;
   }
+  &.info {
+    color: #1890ff;
+  }
+  &.success {
+    color: #52c41a;
+  }
+  &.error {
+    color: #ff4d4f;
+  }
+}
+
+.no-border {
+  border: none;
 }
