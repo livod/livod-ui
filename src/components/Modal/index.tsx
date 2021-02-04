@@ -30,7 +30,25 @@ interface OriginLivodModalProps {
   width?: number;
   height?: number;
 }
-
+/**
+ * 使用React-overlays提供的manage接口，管理全局Modal
+ */
+const manager = new Modal.Manager();
+/**
+ * destroyAll方法删除页面上所有的模态框
+ */
+const destroyAll = () => {
+  // 暂时将container认定为containers数组的第一个元素，通常情况下是body
+  let container = manager.containers[0];
+  manager.modals.forEach((v) => {
+    container.removeChild(v.dialog);
+    container.removeChild(v.backdrop);
+  });
+  const len = manager.modals.length;
+  for (let i = 0; i < len; i++) {
+    manager.remove(manager.modals[0]);
+  }
+};
 export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
   const renderBackdrop = useCallback(
     (props) => <div className="livod-backdrop" {...props} />,
@@ -97,10 +115,14 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
     return Object.assign(style || {}, extraStyle);
   }, [width, height, style]);
 
+  const onHide = () => {
+    onCancel();
+  };
   return (
     <Modal
       show={visible}
-      onHide={onCancel}
+      manager={manager}
+      onHide={onHide}
       renderBackdrop={renderBackdrop}
       aria-labelledby="modal-label"
       className="livod-fixed-modal"
@@ -163,23 +185,7 @@ specConfirmKeys.forEach((key) => {
 
 LivodModal.confirm = useConfirm;
 
-/**
- * @param node 传入的挂载节点
- * @description 利用原生DOM删除Modal组件
- */
-export const destroy = (node) => {
-  const nodeNext = node.nextElementSibling;
-  const nodeNextNext = nodeNext.nextElementSibling;
-  document.body.removeChild(node);
-  document.body.removeChild(nodeNext);
-  document.body.removeChild(nodeNextNext);
-};
 // destroyAll方法删除页面上所有的模态框
-LivodModal.destroyAll = () => {
-  const nodeList = document.querySelectorAll(".livod-fixed-modal");
-  nodeList.forEach((v) =>
-    destroy(v.previousElementSibling.previousElementSibling)
-  );
-};
+LivodModal.destroyAll = destroyAll;
 
 export default LivodModal;
