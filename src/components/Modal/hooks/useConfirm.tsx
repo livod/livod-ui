@@ -1,6 +1,6 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import ReactDOM from "react-dom";
-import { OriginLivodModal, destroy } from "../index";
+import { OriginLivodModal } from "../index";
 
 export type IconType = "success" | "error" | "info" | "warning";
 // confirm props接口
@@ -19,10 +19,11 @@ export interface ConfirmOptions {
   };
   okText?: string;
   cancelText?: string;
+  node?: HTMLElement;
 }
 
 // confirm弹窗
-function useConfirm(props: ConfirmOptions) {
+function Confirm(props: ConfirmOptions) {
   const {
     title = "some title",
     content,
@@ -33,10 +34,11 @@ function useConfirm(props: ConfirmOptions) {
     okText,
     cancelText,
   } = props;
-  const node = document.createElement("div");
+  const [show, setShow] = useState(true);
+
   const handleCancel = () => {
     props.onCancel && props.onCancel();
-    destroy(node);
+    setShow(false);
   };
   // 这里有处理promise的情况
   // 细节基于原生DOM，需要优化
@@ -51,13 +53,13 @@ function useConfirm(props: ConfirmOptions) {
           event.currentTarget.lastChild
         );
         promise.then(() => {
-          destroy(node);
+          setShow(false);
         });
       } else {
-        destroy(node);
+        setShow(false);
       }
     } else {
-      destroy(node);
+      setShow(false);
     }
   };
   // 选择icon组件
@@ -161,13 +163,11 @@ function useConfirm(props: ConfirmOptions) {
       }
     }
   };
-  document.body.append(node);
-  ReactDOM.render(render(), node);
 
   function render() {
     return (
       <OriginLivodModal
-        visible={true}
+        visible={show}
         onCancel={handleCancel}
         onOk={handleOk}
         header={false}
@@ -183,19 +183,20 @@ function useConfirm(props: ConfirmOptions) {
       </OriginLivodModal>
     );
   }
+  return render();
 }
 
 // 生成特定组件(info, error, warning, success)
-// 本质上是调用useConfirm,传入特定icon字段
+// 本质上是调用Confirm,传入特定icon字段
 const iconTypeArr = ["error", "info", "warning", "success"];
 export type SpecConfirmType = {
-  [p in IconType]: typeof useConfirm;
+  [p in IconType]: typeof Confirm;
 };
 const specConfirm: SpecConfirmType = {} as SpecConfirmType;
 iconTypeArr.forEach(
   (icon) =>
     (specConfirm[icon] = (options: ConfirmOptions) => {
-      useConfirm(
+      Confirm(
         Object.assign(options, {
           icon,
         })
@@ -203,4 +204,8 @@ iconTypeArr.forEach(
     })
 );
 export { specConfirm };
-export default useConfirm;
+export default (props) => {
+  const node = document.createElement("div");
+  document.body.append(node);
+  ReactDOM.render(<Confirm {...props}></Confirm>, node);
+};
