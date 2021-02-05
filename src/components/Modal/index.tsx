@@ -1,11 +1,11 @@
 import Modal from "react-overlays/Modal";
 import React, { ReactNode, useMemo, useCallback } from "react";
 import Button from "../Button";
-import useConfirm, {
+import Confirm, {
   ConfirmOptions,
   specConfirm,
   SpecConfirmType,
-} from "./hooks/useConfirm";
+} from "./Confirm";
 
 import "./style/index.less";
 interface OriginLivodModalProps {
@@ -183,8 +183,7 @@ specConfirmKeys.forEach((key) => {
   LivodModal[key] = specConfirm[key];
 });
 
-LivodModal.confirm = useConfirm;
-
+LivodModal.confirm = Confirm;
 // destroyAll方法删除页面上所有的模态框
 LivodModal.destroyAll = destroyAll;
 
