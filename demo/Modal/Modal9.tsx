@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button } from "../src";
+import { Modal, Button } from "../../src";
 function destroyAll() {
   Modal.destroyAll();
 }
