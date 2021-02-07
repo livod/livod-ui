@@ -22,13 +22,15 @@ Livod-ui 基于 React-overlays，致力于提供最轻量级的 UI 框架，且�
 
 https://ant-design.gitee.io/components/overview-cn/
 
+具体细节上的差别请参考demo目录下的代码！
+
 ### 进度
 
 |  组件名  | Antd 官方案例数 | 已完成案例数 | 完成 |
 | :------: | :-------------: | :----------: | :--: |
 |  Modal   |       13        |      10      |  👌  |
 |  Button  |        9        |      1       |  ✍️  |
-| Dropdown |       10        |      1       |  ✍️  |
+| Dropdown |       10        |      4       |  👌  |
 |   Menu   |        7        |      0       |  ✍️  |
 
 ### 细节区别（只有已完成的组件会提供细节区别）
@@ -54,3 +56,34 @@ https://ant-design.gitee.io/components/overview-cn/
 |   参数   | 说明                                                                                                                                         |       类型        |  默认值   |
 | :------: | :------------------------------------------------------------------------------------------------------------------------------------------- | :---------------: | :-------: |
 | **icon** | Livod-ui 内部封装了四种组件，可满足绝大部分需求，因此 icon 属性可以传入字符串("success" \| "error" \| "info" \| "warning")或是一个 ReactNode | string\|ReactNode | "success" |
+
+
+
+#### Dropdown
+
+注意！ Dropdown组件需配套使用DropdownMenu组件而不是Menu!
+
+你可以选择这样导入
+
+```js
+import { Dropdown, DropdownMenu as Menu } from "livod-ui";
+```
+
+#### 实现案例
+
+- 1列1行(基本)
+- 1列3行(触发方式)
+- 2列1行(弹出位置)
+- 2列5行(右键菜单)
+
+__描述__
+
+​	部分案例可以通过二次封装实现，Dropdown组件如果要完整实现要进行较多改动，在此精简至基于React-overlays库开发可实现的最小功能。
+
+#### API区别
+
+|     参数      | 说明                                                  | 类型                                                         | 默认值  |
+| :-----------: | :---------------------------------------------------- | :----------------------------------------------------------- | :-----: |
+| **placement** | 与ant-design不同，livod-ui提供了八种可选的placement值 | "up"\| "upEnd"\| "down"\| "downEnd"\| "left"\| "leftEnd"\| "right"\| "rightEnd" | "down"  |
+|  **trigger**  | 与ant-design不同，trigger属性只需要提供一个字符串     | "contextMenu" \| "click"                                     | "click" |
+
