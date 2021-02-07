@@ -2,20 +2,30 @@ import React, { ReactElement, useMemo } from "react";
 import { useDropdownToggle } from "react-overlays";
 interface DropdownToggleProps {
   children: ReactElement;
-  clickTrigger?: boolean;
+  trigger?: string;
 }
 
 const DropdownToggle: React.FC<DropdownToggleProps> = ({
   children,
-  clickTrigger,
+  trigger,
 }) => {
   const [props, { toggle }] = useDropdownToggle();
 
   const specifiedToggle = useMemo(() => {
-    return {
-      onClick: toggle,
-    };
-  }, [clickTrigger, toggle]);
+    switch (trigger) {
+      case "contextMenu":
+        return {
+          onContextMenu: (e) => {
+            toggle(e);
+            e.preventDefault();
+          },
+        };
+      default:
+        return {
+          onClick: toggle,
+        };
+    }
+  }, [trigger, toggle]);
 
   return React.cloneElement(children, {
     ...props,

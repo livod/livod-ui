@@ -8,6 +8,7 @@ interface LivodDropdownMenuProps {
 interface LivodDropdownMenuItemProps {
   children: ReactNode | ReactNode[];
   danger?: boolean;
+  onClick?: (e: Event) => any;
 }
 
 export type Menu = typeof LivodDropdownMenu & {
@@ -29,9 +30,13 @@ const LivodDropdownMenu: React.FC<LivodDropdownMenuProps> = ({ children }) => {
 const LivodDropdownMenuItem: React.FC<LivodDropdownMenuItemProps> = ({
   children,
   danger,
+  onClick,
 }) => {
   const [, { toggle }] = useDropdownToggle();
-  const close = () => toggle(false);
+  const close = (e) => {
+    onClick && onClick(e);
+    toggle(false);
+  };
   return (
     <li
       onClick={close}
