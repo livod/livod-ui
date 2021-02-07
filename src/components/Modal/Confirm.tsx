@@ -77,8 +77,10 @@ function Confirm(props: ConfirmOptions) {
         cancelText={cancelText}
       >
         {SwitchIcon(icon)}
-        {title && <span className="ant-modal-confirm-title">{title}</span>}
-        {content && <div className="ant-modal-confirm-content">{content}</div>}
+        {title && <span className="livod-modal-confirm-title">{title}</span>}
+        {content && (
+          <div className="livod-modal-confirm-content">{content}</div>
+        )}
       </OriginLivodModal>
     );
   }
