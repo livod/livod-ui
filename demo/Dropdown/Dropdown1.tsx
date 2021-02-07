@@ -40,7 +40,7 @@ export default () => {
         href="#"
         onClick={(e) => e.preventDefault()}
       >
-        Hover me
+        Click me
       </a>
     </Dropdown>
   );
