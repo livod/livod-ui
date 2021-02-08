@@ -8,7 +8,16 @@ Livod-ui 基于 React-overlays，致力于提供最轻量级的 UI 框架，且�
 
 方式一： 将源代码拉取至本地，使用 npm i 安装相关依赖，运行 npm run build。根目录下生成 esm 文件，即可使用(需导入 react-overlays 包)。
 
-方式二： npm（后续）
+方式二： npm
+
+```js
+npm install livod-ui
+```
+
+```js
+// 我们提供esm从而享受tree shaking的能力
+import { Modal } from "livod-ui"
+```
 
 #### DEMO 运行
 
@@ -38,7 +47,7 @@ __强调__：仅仅实现了案例中体现的API，不要指望Antd官方API都
 
 ### 细节区别（只有已完成的组件会提供细节区别）
 
-#### Modal
+### Modal
 
 #### 未实现案例
 
@@ -62,7 +71,7 @@ __强调__：仅仅实现了案例中体现的API，不要指望Antd官方API都
 
 
 
-#### Dropdown
+### Dropdown
 
 注意！ Dropdown组件需配套使用DropdownMenu组件而不是Menu!
 
@@ -92,7 +101,7 @@ __描述__
 
 
 
-#### message
+### message
 
 #### 未实现案例
 
