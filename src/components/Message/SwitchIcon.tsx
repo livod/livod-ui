@@ -2,6 +2,8 @@ import React from "react";
 
 export default (type) => {
   switch (type) {
+    case "loading":
+      return <span className="livod-loading"></span>;
     case "warning":
       return (
         <svg
