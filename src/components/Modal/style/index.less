@@ -11,6 +11,24 @@
   font-size: 14px;
   line-height: 1.5715;
   word-wrap: break-word;
+  .anticon-exclamation-circle {
+    float: left;
+    margin-right: 16px;
+    font-size: 22px;
+    line-height: 0;
+    &.warning {
+      color: #faad14;
+    }
+    &.info {
+      color: #1890ff;
+    }
+    &.success {
+      color: #52c41a;
+    }
+    &.error {
+      color: #ff4d4f;
+    }
+  }
 }
 .livod-modal-closex {
   display: block;
@@ -72,8 +90,9 @@
   position: fixed;
   width: 400px;
   z-index: 1040;
-  top: 30%;
-  left: calc(50% - 200px);
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: white;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
@@ -91,12 +110,7 @@
   font-size: 14px;
   margin-left: 38px;
 }
-.anticon-exclamation-circle {
-  float: left;
-  margin-right: 16px;
-  font-size: 22px;
-  line-height: 0;
-  &.warning {
-    color: #faad14;
-  }
+
+.no-border {
+  border: none;
 }

@@ -1,0 +1,40 @@
+.livod-message-container {
+  position: fixed;
+  z-index: 1040;
+  top: 20px;
+  left: 50%;
+  width: 100%;
+  padding: 16px;
+  transform: translateX(-50%);
+  font-size: 14px;
+  > div:focus {
+    outline: none;
+  }
+  pointer-events: none;
+}
+
+.livod-message {
+  display: inline-block;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px 16px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  pointer-events: all;
+  margin-bottom: 12px;
+  .livod-message-icon {
+    margin-right: 6px;
+    svg {
+      vertical-align: sub;
+      transform: translateY(-1px);
+      font-size: 16px;
+    }
+  }
+}

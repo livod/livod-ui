@@ -2,11 +2,12 @@ import React, { MouseEvent } from "react";
 import "./style/index.less";
 
 interface ButtonProps {
-  type?: string;
+  type?: "primary" | "danger";
   onClick?: (event: MouseEvent) => void;
   children?: any;
   loading?: boolean;
   disabled?: boolean;
+  style?: any;
 }
 /**
  * @param type 传入type prop
@@ -29,24 +30,20 @@ function correctTypeProp(type: string) {
   return correctedType;
 }
 
-const Button: React.FC<ButtonProps> = (props) => {
-  const {
-    onClick,
-    type,
-    disabled,
-    loading,
-    children
-  } = props
+const Button: React.FC<ButtonProps> = React.forwardRef((props, ref) => {
+  const { onClick, type, disabled, loading, children, ...rest } = props;
   return (
     <button
       onClick={onClick}
       className={"livod-button " + correctTypeProp(type)}
       disabled={disabled === true}
+      ref={ref as any}
+      {...rest}
     >
       {loading && <span className="livod-loading"></span>}
       {children}
     </button>
   );
-};
+});
 
 export default Button;
