@@ -29,6 +29,7 @@ interface OriginLivodModalProps {
   style?: object;
   width?: number;
   height?: number;
+  className?: string;
 }
 /**
  * 使用React-overlays提供的manage接口，管理全局Modal
@@ -70,6 +71,7 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
     style,
     width,
     height,
+    className,
   } = props;
 
   /**
@@ -125,7 +127,7 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
       onHide={onHide}
       renderBackdrop={renderBackdrop}
       aria-labelledby="modal-label"
-      className="livod-fixed-modal"
+      className={"livod-fixed-modal " + className}
       style={convertedStyle}
     >
       <>
