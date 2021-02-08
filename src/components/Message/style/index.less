@@ -15,8 +15,6 @@
 
 .livod-message {
   display: inline-block;
-  margin: 0 auto;
-  text-align: center;
   padding: 10px 16px;
   position: relative;
   left: 50%;
@@ -36,5 +34,24 @@
       transform: translateY(-1px);
       font-size: 16px;
     }
+  }
+}
+.livod-loading {
+  display: inline-block;
+  position: relative;
+  width: 12px;
+  height: 12px;
+  top: 2px;
+  clip-path: polygon(0 100%, 50% 100%, 50% 0%, 0 0%);
+  border-radius: 50%;
+  border: 1px solid #1890ff;
+  animation: livod-loading-spin 1s linear infinite;
+}
+@keyframes livod-loading-spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(1turn);
   }
 }
