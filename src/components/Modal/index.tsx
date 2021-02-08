@@ -142,7 +142,7 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
       onHide={onHide}
       renderBackdrop={renderBackdrop}
       aria-labelledby="modal-label"
-      className={"livod-fixed-modal " + className}
+      className={"livod-fixed-modal " + (className ? className : "")}
       style={convertedStyle}
     >
       <>
@@ -167,7 +167,7 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
           </div>
         ) : null}
         <div className="livod-modal-body">{children || null}</div>
-        <div className={"livod-modal-footer " + (header ? null : "no-border")}>
+        <div className={"livod-modal-footer " + (header ? "" : "no-border")}>
           {footerMemo.map((v) => v)}
         </div>
       </>
