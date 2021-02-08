@@ -1,6 +1,6 @@
 {
   "name": "livod-ui",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "./esm/index.js",
   "module": "./esm/index.js",
@@ -35,6 +35,10 @@
     "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.7.3"
   },
+  "files": [
+    "esm",
+    "dist"
+  ],
   "dependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
