@@ -55,3 +55,6 @@ export { default as Breadcrumb } from 'antd/lib/breadcrumb';
 export { default as Switch } from 'antd/lib/switch';
 export { default as Tree } from 'antd/lib/tree';
 ```
+## 改善建议
+
+- 实现一个 LoadingButton，或者说给 Button 添加一个 Loading 属性

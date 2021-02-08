@@ -21,8 +21,8 @@ export type Message<T extends string> = {
 let container: any = null;
 
 // 暴露出去的Message对象
-let message: Message<MessageType> = {} as Message<MessageType>;
-let messageTypeArr: MessageType[] = ["info", "error", "warning", "success"];
+const message: Message<MessageType> = {} as Message<MessageType>;
+const messageTypeArr: MessageType[] = ["info", "error", "warning", "success"];
 
 const OriginMessage: React.FC<any> = React.forwardRef(
   ({ timeout, tobeRemovedNode, type, msg, className, style }, ref) => {
