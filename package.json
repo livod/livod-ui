@@ -1,6 +1,6 @@
 {
   "name": "livod-ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "./esm/index.js",
   "module": "./esm/index.js",
