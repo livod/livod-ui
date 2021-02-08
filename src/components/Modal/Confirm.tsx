@@ -75,6 +75,7 @@ function Confirm(props: ConfirmOptions) {
         cancelButtonProps={cancelButtonProps}
         okText={okText}
         cancelText={cancelText}
+        ignoreCancel={true}
       >
         {SwitchIcon(icon)}
         {title && <span className="livod-modal-confirm-title">{title}</span>}
@@ -97,11 +98,9 @@ const specConfirm: SpecConfirmType = {} as SpecConfirmType;
 iconTypeArr.forEach(
   (icon) =>
     (specConfirm[icon] = (options: ConfirmOptions) => {
-      Confirm(
-        Object.assign(options, {
-          icon,
-        })
-      );
+      const node = document.createElement("div");
+      document.body.append(node);
+      ReactDOM.render(<Confirm {...options} icon={icon}></Confirm>, node);
     })
 );
 export { specConfirm };

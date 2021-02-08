@@ -30,6 +30,7 @@ interface OriginLivodModalProps {
   width?: number;
   height?: number;
   className?: string;
+  ignoreCancel?: boolean;
 }
 /**
  * 使用React-overlays提供的manage接口，管理全局Modal
@@ -72,6 +73,7 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
     width,
     height,
     className,
+    ignoreCancel,
   } = props;
 
   /**
@@ -86,6 +88,19 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
       } else {
         return footer;
       }
+    }
+    if (ignoreCancel) {
+      return [
+        <Button
+          disabled={okButtonProps.disabled}
+          key="default-confirm"
+          type={okType || "primary"}
+          onClick={onOk}
+          loading={confirmLoading}
+        >
+          {"知道了"}
+        </Button>,
+      ];
     }
     return [
       <Button
