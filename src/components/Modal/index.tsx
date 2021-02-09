@@ -1,6 +1,7 @@
 import Modal from "react-overlays/Modal";
 import React, { ReactNode, useMemo, useCallback } from "react";
 import Button from "../Button";
+import manager from "../Manager";
 import Confirm, {
   ConfirmOptions,
   specConfirm,
@@ -32,10 +33,7 @@ interface OriginLivodModalProps {
   className?: string;
   ignoreCancel?: boolean;
 }
-/**
- * 使用React-overlays提供的manage接口，管理全局Modal
- */
-const manager = new Modal.Manager();
+
 /**
  * destroyAll方法删除页面上所有的模态框
  */

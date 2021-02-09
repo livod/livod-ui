@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { Modal } from "react-overlays";
 import SwitchIcon from "./SwitchIcon";
+import manager from "../Manager";
 import "./style/index.less";
 
 export type MessageType = "info" | "error" | "warning" | "success" | "loading";
@@ -61,6 +62,7 @@ const OriginMessage: React.FC<any> = React.forwardRef(
     }, []);
     return (
       <Modal
+        manager={manager}
         show={show}
         onHide={() => setShow(false)}
         aria-labelledby="modal-label"
@@ -98,7 +100,7 @@ const showMessage = (type, msg = "", timeout = 3) => {
       type={type}
       msg={msg}
       style={config && config.style}
-      className={config && config.className}
+      className={config ? config.className : ""}
       tobeRemovedNode={tobeRenderedNode}
     ></OriginMessage>,
     tobeRenderedNode
