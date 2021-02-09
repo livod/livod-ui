@@ -23,5 +23,5 @@
     "baseUrl": "src"
   },
   "exclude": ["node_modules", "build"], // *** 不进行类型检查的文件 ***
-  "include": ["src/components/*/*.tsx", "src/index.ts"]
+  "include": ["src/components/*/*.tsx", "src/**/*.ts"]
 }
