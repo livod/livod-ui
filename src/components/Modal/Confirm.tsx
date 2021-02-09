@@ -1,7 +1,7 @@
 import React, { ReactNode, useState } from "react";
 import ReactDOM from "react-dom";
 import { OriginLivodModal } from "./index";
-import SwitchIcon from "./SwitchIcon2";
+import SwitchIcon from "./SwitchIcon";
 export type IconType = "success" | "error" | "info" | "warning";
 // confirm props接口
 export interface ConfirmOptions {
