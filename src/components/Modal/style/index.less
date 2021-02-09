@@ -1,12 +1,25 @@
 .livod-modal-footer {
   padding: 10px 16px;
+  &.no-border {
+    padding: 20px 32px 24px;
+  }
   text-align: right;
   background: 0 0;
   border-top: 1px solid #f0f0f0;
   border-radius: 0 0 2px 2px;
 }
-
+.livod-modal-title {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+  word-wrap: break-word;
+}
 .livod-modal-body {
+  &:first-child {
+    padding: 32px 32px 0px;
+  }
   padding: 24px;
   font-size: 14px;
   line-height: 1.5715;
@@ -66,13 +79,10 @@
   border-radius: 2px 2px 0 0;
   box-sizing: border-box;
 }
-.livod-modal-title {
-  margin: 0;
+.livod-modal-confirm-title {
   color: rgba(0, 0, 0, 0.85);
   font-weight: 500;
   font-size: 16px;
-  line-height: 22px;
-  word-wrap: break-word;
 }
 .livod-backdrop {
   position: fixed;
@@ -88,7 +98,7 @@
 // don't sit right on top of each other.
 .livod-fixed-modal {
   position: fixed;
-  width: 400px;
+  width: 500px;
   z-index: 1040;
   top: 20%;
   left: 50%;
@@ -96,7 +106,7 @@
   background-color: white;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
-.ant-modal-confirm-title {
+.livod-modal-confirm-title {
   display: block;
   overflow: hidden;
   color: rgba(0, 0, 0, 0.85);
@@ -104,11 +114,11 @@
   font-size: 16px;
   line-height: 1.4;
 }
-.ant-modal-confirm-content {
+.livod-modal-confirm-content {
   margin-top: 8px;
   color: rgba(0, 0, 0, 0.85);
   font-size: 14px;
-  margin-left: 38px;
+  text-indent: 38px;
 }
 
 .no-border {

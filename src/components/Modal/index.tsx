@@ -1,6 +1,7 @@
 import Modal from "react-overlays/Modal";
 import React, { ReactNode, useMemo, useCallback } from "react";
 import Button from "../Button";
+import manager from "../Manager";
 import Confirm, {
   ConfirmOptions,
   specConfirm,
@@ -29,11 +30,10 @@ interface OriginLivodModalProps {
   style?: object;
   width?: number;
   height?: number;
+  className?: string;
+  ignoreCancel?: boolean;
 }
-/**
- * 使用React-overlays提供的manage接口，管理全局Modal
- */
-const manager = new Modal.Manager();
+
 /**
  * destroyAll方法删除页面上所有的模态框
  */
@@ -70,6 +70,8 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
     style,
     width,
     height,
+    className,
+    ignoreCancel,
   } = props;
 
   /**
@@ -84,6 +86,19 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
       } else {
         return footer;
       }
+    }
+    if (ignoreCancel) {
+      return [
+        <Button
+          disabled={okButtonProps.disabled}
+          key="default-confirm"
+          type={okType || "primary"}
+          onClick={onOk}
+          loading={confirmLoading}
+        >
+          {"知道了"}
+        </Button>,
+      ];
     }
     return [
       <Button
@@ -103,7 +118,7 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
         {okText}
       </Button>,
     ];
-  }, [footer, confirmLoading]);
+  }, [footer, confirmLoading, onOk, onCancel]);
 
   /**
    * 对style进行处理
@@ -125,7 +140,7 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
       onHide={onHide}
       renderBackdrop={renderBackdrop}
       aria-labelledby="modal-label"
-      className="livod-fixed-modal"
+      className={"livod-fixed-modal " + (className ? className : "")}
       style={convertedStyle}
     >
       <>
@@ -150,7 +165,7 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
           </div>
         ) : null}
         <div className="livod-modal-body">{children || null}</div>
-        <div className={"livod-modal-footer " + (header ? null : "no-border")}>
+        <div className={"livod-modal-footer " + (header ? "" : "no-border")}>
           {footerMemo.map((v) => v)}
         </div>
       </>
