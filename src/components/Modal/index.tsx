@@ -120,7 +120,7 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
         {okText}
       </Button>,
     ];
-  }, [footer, confirmLoading]);
+  }, [footer, confirmLoading, onOk, onCancel]);
 
   /**
    * 对style进行处理
