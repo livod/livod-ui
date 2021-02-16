@@ -27,7 +27,6 @@ const messageTypeArr: MessageType[] = ["info", "error", "warning", "success"];
 
 const OriginMessage: React.FC<any> = React.forwardRef(
   ({ timeout, tobeRemovedNode, type, msg, className, style }, ref) => {
-    const ModalRef = useRef(null);
     const [show, setShow] = useState(true);
     /* 原生DOM操作实现清除节点 */
     const clearNode = () => {
@@ -61,10 +60,6 @@ const OriginMessage: React.FC<any> = React.forwardRef(
         clearNode();
       };
     }, []);
-    // 修复tabIndex导致的闪烁现象
-    useEffect(() => {
-      ModalRef.current.dialog.removeAttribute("tabIndex");
-    }, []);
     return (
       <Modal
         manager={manager}
@@ -75,7 +70,7 @@ const OriginMessage: React.FC<any> = React.forwardRef(
         autoFocus={false}
         className={"livod-message " + className}
         style={style}
-        ref={ModalRef}
+        enforceFocus={false}
       >
         <div>
           <span className="livod-message-icon">{SwitchIcon(type)}</span>
