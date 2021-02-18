@@ -29,4 +29,6 @@ const OriginInput: React.FC<OriginInputProps> = ({
   );
 };
 
+OriginInput.displayName = "Input";
+
 export default OriginInput;

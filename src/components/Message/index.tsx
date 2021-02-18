@@ -202,4 +202,6 @@ messageTypeArr.forEach((v) => {
   message[v] = showMessage.bind(null, v);
 });
 
+OriginMessage.displayName = "Message";
+
 export default message;

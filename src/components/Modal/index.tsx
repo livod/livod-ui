@@ -201,5 +201,5 @@ specConfirmKeys.forEach((key) => {
 LivodModal.confirm = Confirm;
 // destroyAll方法删除页面上所有的模态框
 LivodModal.destroyAll = destroyAll;
-
+LivodModal.displayName = "Modal";
 export default LivodModal;

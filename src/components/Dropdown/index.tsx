@@ -51,5 +51,5 @@ const LivodDropdown: React.FC<LivodDropdownProps> = ({
     </Dropdown>
   );
 };
-
+LivodDropdown.displayName = "Dropdown";
 export default LivodDropdown;
