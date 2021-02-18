@@ -1,8 +1,8 @@
 import React from "react";
-import { message, Button } from "../../src";
+import { Message, Button } from "../../src";
 
 const success = () => {
-  message.success({
+  Message.success({
     content: "This is a prompt message with custom className and style",
     className: "custom-class",
     style: {

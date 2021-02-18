@@ -1,8 +1,8 @@
 import React from "react";
-import { message, Button } from "../../src";
+import { Message, Button } from "../../src";
 
 const info = () => {
-  message.info("This is a normal message");
+  Message.info("This is a normal message");
 };
 
 export default () => (
