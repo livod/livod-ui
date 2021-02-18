@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react";
 import ReactDOM from "react-dom";
-import { OriginLivodModal } from "./index";
+import { Modal } from "./index";
 import SwitchIcon from "./SwitchIcon";
 export type IconType = "success" | "error" | "info" | "warning";
 // confirm props接口
@@ -65,7 +65,7 @@ function Confirm(props: ConfirmOptions) {
 
   function render() {
     return (
-      <OriginLivodModal
+      <Modal
         visible={show}
         onCancel={handleCancel}
         onOk={handleOk}
@@ -82,7 +82,7 @@ function Confirm(props: ConfirmOptions) {
         {content && (
           <div className="livod-modal-confirm-content">{content}</div>
         )}
-      </OriginLivodModal>
+      </Modal>
     );
   }
   return render();
