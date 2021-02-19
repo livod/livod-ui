@@ -9,9 +9,9 @@ interface TooltipProps {
   title: string;
   /** tooltip出现的方位 */
   placement?: Placement;
-  style?: object;
+  style?: React.CSSProperties;
   /** tooltip自定义样式 */
-  tooltipStyle?: object;
+  tooltipStyle?: React.CSSProperties;
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
@@ -58,7 +58,6 @@ const Tooltip: React.FC<TooltipProps> = ({
               <div
                 className={"livod-tooltip-arrow " + placement}
                 {...arrowProps}
-                style={arrowProps.style}
               />
               <div className={"livod-tooltip-body"} style={tooltipStyle}>
                 {title}
