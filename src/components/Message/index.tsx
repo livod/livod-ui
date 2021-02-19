@@ -71,6 +71,9 @@ const OriginMessage: React.FC<any> = React.forwardRef(
         className={"livod-message " + className}
         style={style}
         enforceFocus={false}
+        restoreFocusOptions={{
+          preventScroll: true,
+        }}
       >
         <div>
           <span className="livod-message-icon">{SwitchIcon(type)}</span>
