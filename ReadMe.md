@@ -19,13 +19,17 @@ npm install livod-ui
 import { Modal } from "livod-ui";
 ```
 
+### 文档查看
+
+```js
+npm run docs
+```
+
 #### DEMO 运行
 
 安装好依赖，使用 npm run dev，自行修改 index.tsx 测试组件
 
 （后续预置对应场景的 DEMO）
-
-## 文档
 
 ### 整体参考
 
@@ -88,7 +92,7 @@ import { Dropdown, DropdownMenu as Menu } from "livod-ui";
 
 描述
 
-​ 部分案例可以通过二次封装实现，Dropdown 组件如果要完整实现要进行较多改动，在此精简至基于 React-overlays 库开发可实现的最小功能。
+部分案例可以通过二次封装实现，Dropdown 组件如果要完整实现要进行较多改动，在此精简至基于 React-overlays 库开发可实现的最小功能。
 
 #### API 区别
 
@@ -106,10 +110,10 @@ import { Dropdown, DropdownMenu as Menu } from "livod-ui";
 
 描述
 
-​ 更新消息内容可通过 state 实现相同效果，用户可控，因此不提供此案例实现。
+更新消息内容可通过 state 实现相同效果，用户可控，因此不提供此案例实现。
 
-​ 通过 Hooks 获取上下文暂不提供。
+通过 Hooks 获取上下文暂不提供。
 
 #### API 区别
 
-​ 本 API 无任何区别
+本 API 无任何区别
