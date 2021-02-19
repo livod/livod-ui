@@ -19,7 +19,9 @@ npm install livod-ui
 import { Modal } from "livod-ui";
 ```
 
-### 文档查看
+
+
+### 阅读文档
 
 ```js
 npm run docs
@@ -27,17 +29,13 @@ npm run docs
 
 #### DEMO 运行
 
-安装好依赖，使用 npm run dev，自行修改 index.tsx 测试组件
+> 不推荐
 
-（后续预置对应场景的 DEMO）
+```
+npm run dev
+```
 
-### 整体参考
-
-https://ant-design.gitee.io/components/overview-cn/
-
-具体细节上的差别请参考 demo 目录下的代码！
-
-**强调**：仅仅实现了案例中体现的 API，不要指望 Antd 官方 API 都有完整实现！
+修改demo目录下的index.tsx入口文件即可。
 
 ### 进度
 
@@ -47,6 +45,7 @@ https://ant-design.gitee.io/components/overview-cn/
 | Dropdown |       10        |      4       |  👌  |
 | message  |        8        |      6       |  👌  |
 |  Button  |        9        |      1       |  ✍️  |
+|  Table   |       32        |      1       |  ✍️  |
 |  Input   |       15        |      1       |  ✍️  |
 
 ### 细节区别（只有已完成的组件会提供细节区别）
