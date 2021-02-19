@@ -24,5 +24,6 @@ module.exports = {
     "src/components/Input/index.tsx",
     "src/components/Message/index.tsx",
     "src/components/Modal/index.tsx",
+    "src/components/Table/index.tsx",
   ],
 };
