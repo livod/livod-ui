@@ -19,8 +19,6 @@ npm install livod-ui
 import { Modal } from "livod-ui";
 ```
 
-
-
 ### 阅读文档
 
 ```js
@@ -35,7 +33,7 @@ npm run docs
 npm run dev
 ```
 
-修改demo目录下的index.tsx入口文件即可。
+修改 demo 目录下的 index.tsx 入口文件即可。
 
 ### 进度
 
@@ -45,6 +43,7 @@ npm run dev
 | Dropdown |       10        |      4       |  👌  |
 | message  |        8        |      6       |  👌  |
 |  Button  |        9        |      1       |  ✍️  |
+| Tooltip  |        4        |      2       |  ✍️  |
 |  Table   |       32        |      1       |  ✍️  |
 |  Input   |       15        |      1       |  ✍️  |
 
