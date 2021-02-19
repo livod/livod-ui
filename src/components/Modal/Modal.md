@@ -317,9 +317,9 @@ function confirm() {
 </>;
 ```
 
-自定义位置 padded
+自定义位置
 
-```jsx
+```jsx padded
 import React, { useState } from "react";
 import { Modal, Button } from "../../index.ts";
 
@@ -333,7 +333,7 @@ const [modal2Visible, setModal2Visible] = useState(false);
   <Modal
     title="20px to Top"
     style={{ top: 20 }}
-    visible={state.modal1Visible}
+    visible={modal1Visible}
     onOk={() => setModal1Visible(false)}
     onCancel={() => setModal1Visible(false)}
   >
@@ -348,7 +348,7 @@ const [modal2Visible, setModal2Visible] = useState(false);
   </Button>
   <Modal
     title="Vertically centered modal dialog"
-    visible={state.modal2Visible}
+    visible={modal2Visible}
     onOk={() => setModal2Visible(false)}
     onCancel={() => setModal2Visible(false)}
   >
