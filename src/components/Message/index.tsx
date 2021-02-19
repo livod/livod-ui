@@ -71,6 +71,9 @@ const OriginMessage: React.FC<any> = React.forwardRef(
         className={"livod-message " + className}
         style={style}
         enforceFocus={false}
+        restoreFocusOptions={{
+          preventScroll: true,
+        }}
       >
         <div>
           <span className="livod-message-icon">{SwitchIcon(type)}</span>
@@ -201,5 +204,7 @@ message.loading = ((msg, timeout = 0, key = {}) => {
 messageTypeArr.forEach((v) => {
   message[v] = showMessage.bind(null, v);
 });
+
+OriginMessage.displayName = "Message";
 
 export default message;

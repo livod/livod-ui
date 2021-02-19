@@ -1,16 +1,18 @@
 import React, { useMemo } from "react";
 import "./style/index.less";
 export interface OriginInputProps {
+  /** 占位符 */
   placeholder?: string;
   className?: string;
   value?: string;
+  /** 是否有错(影响样式) */
   hasError?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const OriginInput: React.FC<OriginInputProps> = ({
   className = "",
-  hasError,
+  hasError = false,
   ...rest
 }) => {
   const classname = useMemo(() => {
@@ -28,5 +30,7 @@ const OriginInput: React.FC<OriginInputProps> = ({
     </>
   );
 };
+
+OriginInput.displayName = "Input";
 
 export default OriginInput;

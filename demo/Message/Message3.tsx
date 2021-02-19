@@ -1,7 +1,7 @@
-import { message, Button } from "../../src";
+import { Message, Button } from "../../src";
 import React from "react";
 const success = () => {
-  message.success(
+  Message.success(
     "This is a prompt message for success, and it will disappear in 10 seconds",
     10
   );

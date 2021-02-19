@@ -1,4 +1,4 @@
-import Modal from "react-overlays/Modal";
+import RO_Modal from "react-overlays/Modal";
 import React, { ReactNode, useMemo, useCallback } from "react";
 import Button from "../Button";
 import manager from "../Manager";
@@ -9,7 +9,7 @@ import Confirm, {
 } from "./Confirm";
 
 import "./style/index.less";
-interface OriginLivodModalProps {
+interface ModalProps {
   title?: string;
   visible: boolean;
   onCancel?: () => void;
@@ -49,7 +49,7 @@ const destroyAll = () => {
     manager.remove(manager.modals[0]);
   }
 };
-export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
+export const Modal: React.FC<ModalProps> = (props) => {
   const renderBackdrop = useCallback(
     (props) => <div className="livod-backdrop" {...props} />,
     []
@@ -134,7 +134,7 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
     onCancel();
   };
   return (
-    <Modal
+    <RO_Modal
       show={visible}
       manager={manager}
       onHide={onHide}
@@ -169,11 +169,11 @@ export const OriginLivodModal: React.FC<OriginLivodModalProps> = (props) => {
           {footerMemo.map((v) => v)}
         </div>
       </>
-    </Modal>
+    </RO_Modal>
   );
 };
 
-OriginLivodModal.defaultProps = {
+Modal.defaultProps = {
   okText: "确定",
   cancelText: "取消",
   onCancel: () => {},
@@ -187,7 +187,7 @@ OriginLivodModal.defaultProps = {
   },
 };
 
-const LivodModal = OriginLivodModal as typeof OriginLivodModal & {
+const LivodModal = Modal as typeof Modal & {
   confirm: (options: ConfirmOptions) => void;
   destroyAll: () => void;
 } & SpecConfirmType;
@@ -201,5 +201,5 @@ specConfirmKeys.forEach((key) => {
 LivodModal.confirm = Confirm;
 // destroyAll方法删除页面上所有的模态框
 LivodModal.destroyAll = destroyAll;
-
+LivodModal.displayName = "Modal";
 export default LivodModal;

@@ -1,11 +1,15 @@
 import React, { ReactElement, useState } from "react";
 import { Dropdown } from "react-overlays";
 import DropdownToggle from "./DropdownToggle";
+import DropdownMenu from "./DropdownMenu";
 import "./style/index.less";
 interface LivodDropdownProps {
   children: ReactElement;
+  /** Menu组件 */
   overlay: ReactElement;
+  /** Menu出现的位置 */
   placement?: Placement;
+  /** 触发方式，click或是contextMenu */
   trigger?: string;
 }
 
@@ -20,16 +24,13 @@ export type Placement =
   | "rightEnd";
 
 const convertPlacement = (placement: Placement) => {
-  if (!placement) {
-    return ["down"];
-  }
   return placement.split(/\B(?=[A-Z])/);
 };
 
 const LivodDropdown: React.FC<LivodDropdownProps> = ({
   children,
   overlay,
-  placement,
+  placement = "down",
   trigger,
 }) => {
   const [drop, alignEnd] = convertPlacement(placement);
@@ -51,5 +52,6 @@ const LivodDropdown: React.FC<LivodDropdownProps> = ({
     </Dropdown>
   );
 };
-
+LivodDropdown.displayName = "Dropdown";
+(LivodDropdown as any).Menu = DropdownMenu;
 export default LivodDropdown;

@@ -1,11 +1,10 @@
 import React from "react";
-import { message, Button } from "../../src";
+import { Message, Button } from "../../src";
 
 const success = () => {
-  message
-    .loading("Action in progress..", 2.5)
-    .then(() => message.success("Loading finished", 2.5))
-    .then(() => message.info("Loading finished is finished", 2.5));
+  Message.loading("Action in progress..", 2.5)
+    .then(() => Message.success("Loading finished", 2.5))
+    .then(() => Message.info("Loading finished is finished", 2.5));
 };
 
 export default () => (
