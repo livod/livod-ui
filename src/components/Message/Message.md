@@ -1,15 +1,15 @@
 导入
 
 ```js static
-import { Message } from "livod-ui";
+import { message } from "livod-ui";
 ```
 
 普通提示
 
 ```jsx
-import { Message, Button } from "../../index.ts";
+import { message, Button } from "../../index.ts";
 const info = () => {
-  Message.info("This is a normal message");
+  message.info("This is a normal message");
 };
 <Button type="primary" onClick={info}>
   Display normal message
@@ -19,18 +19,18 @@ const info = () => {
 其它提示类型
 
 ```jsx padded
-import { Message, Button } from "../../index.ts";
+import { message, Button } from "../../index.ts";
 
 const success = () => {
-  Message.success("This is a success message");
+  message.success("This is a success message");
 };
 
 const error = () => {
-  Message.error("This is an error message");
+  message.error("This is an error message");
 };
 
 const warning = () => {
-  Message.warning("This is a warning message");
+  message.warning("This is a warning message");
 };
 
 <>
@@ -43,9 +43,9 @@ const warning = () => {
 修改延时
 
 ```jsx
-import { Message, Button } from "../../index.ts";
+import { message, Button } from "../../index.ts";
 const success = () => {
-  Message.success(
+  message.success(
     "This is a prompt message for success, and it will disappear in 10 seconds",
     10
   );
@@ -57,10 +57,10 @@ const success = () => {
 加载中
 
 ```jsx
-import { Message, Button } from "../../index.ts";
+import { message, Button } from "../../index.ts";
 
 const success = () => {
-  const hide = Message.loading("Action in progress..", 0);
+  const hide = message.loading("Action in progress..", 0);
   // Dismiss manually and asynchronously
   console.log(hide);
   setTimeout(hide, 2500);
@@ -72,12 +72,13 @@ const success = () => {
 Promise 接口
 
 ```jsx
-import { Message, Button } from "../../index.ts";
+import { message, Button } from "../../index.ts";
 
 const success = () => {
-  Message.loading("Action in progress..", 2.5)
-    .then(() => Message.success("Loading finished", 2.5))
-    .then(() => Message.info("Loading finished is finished", 2.5));
+  message
+    .loading("Action in progress..", 2.5)
+    .then(() => message.success("Loading finished", 2.5))
+    .then(() => message.info("Loading finished is finished", 2.5));
 };
 
 <Button onClick={success}>Display sequential messages</Button>;
@@ -86,10 +87,10 @@ const success = () => {
 自定义样式
 
 ```jsx
-import { Message, Button } from "../../index.ts";
+import { message, Button } from "../../index.ts";
 
 const success = () => {
-  Message.success({
+  message.success({
     content: "This is a prompt message with custom className and style",
     className: "custom-class",
     style: {
