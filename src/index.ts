@@ -5,6 +5,7 @@ import message from "./components/Message";
 import DropdownMenu from "./components/Dropdown/DropdownMenu";
 import Input from "./components/Input";
 import Table from "./components/Table";
+import Tooltip from "./components/Tooltip";
 import "./style/index.less";
 
 const Message = message;
@@ -18,4 +19,5 @@ export {
   message,
   Input,
   Table,
+  Tooltip,
 };
