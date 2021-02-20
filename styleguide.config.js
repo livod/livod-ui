@@ -19,12 +19,6 @@ module.exports = {
     "./tsconfig.json"
   ).parse,
   components: [
-    "src/components/Button/index.tsx",
-    "src/components/Dropdown/index.tsx",
-    "src/components/Input/index.tsx",
-    "src/components/Message/index.tsx",
-    "src/components/Modal/index.tsx",
-    "src/components/Table/index.tsx",
-    "src/components/Tooltip/index.tsx",
+    "src/components/**/index.tsx",
   ],
 };
