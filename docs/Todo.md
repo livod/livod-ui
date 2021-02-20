@@ -58,3 +58,10 @@ export { default as Tree } from 'antd/lib/tree';
 ## 改善建议
 
 - 实现一个 LoadingButton，或者说给 Button 添加一个 Loading 属性
+
+
+## 如何发布文档
+
+- 执行 npm run docs-build
+- 更新到 gitee 上的 docs 分支
+- 在 https://gitee.com/livod/livod-ui/pages 上发布 docs 分支，指定 styleguide 目录
