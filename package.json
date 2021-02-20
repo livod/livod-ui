@@ -11,8 +11,16 @@
     "docs": "npx styleguidist server",
     "docs-build": "npx styleguidist build"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/attackonryan/Livod-UI"
+  },
+  "keywords": [
+    "ui",
+    "livod",
+    "livod-ui"
+  ],
+  "author": "attackonryan",
   "license": "ISC",
   "devDependencies": {
     "@types/react": "^17.0.0",
