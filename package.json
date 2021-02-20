@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./scripts/webpack.dev.js",
     "build": "cross-env NODE_ENV=production gulp",
-    "docs": "npx styleguidist server"
+    "docs": "npx styleguidist server",
+    "docs-build": "npx styleguidist build"
   },
   "keywords": [],
   "author": "",
