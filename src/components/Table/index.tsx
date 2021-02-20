@@ -62,7 +62,7 @@ const Table: React.FC<TableProps> = ({ columns, dataSource, className }) => {
             {indexName.map((name, i) => {
               const { dataIndex, render } = name;
               return render ? (
-                <td key={dataIndex || i}>{name.render(v[dataIndex], v)}</td>
+                <td key={dataIndex || i}>{render(v[dataIndex], v)}</td>
               ) : (
                 <td key={dataIndex || i}>{v[dataIndex]}</td>
               );
