@@ -38,6 +38,6 @@ import { Tooltip } from "livod-ui";
   tooltipStyle={{ fontSize: "12px", color: "lightgreen" }}
   title="自定义样式"
 >
-  <a>12px red</a>
+  <a>12px lightgreen</a>
 </Tooltip>
 ```
