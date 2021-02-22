@@ -9,7 +9,7 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./scripts/webpack.dev.js",
     "build": "cross-env NODE_ENV=production gulp",
     "docs": "npx styleguidist server",
-    "docs-build": "npx styleguidist build"
+    "docs-build": "rm -rf styleguide & npx styleguidist build"
   },
   "repository": {
     "type": "git",
