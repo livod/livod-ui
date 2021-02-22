@@ -7,7 +7,7 @@ import { Tooltip } from "livod-ui";
 基本使用
 
 ```jsx
-<Tooltip title="I’m placed to the bottom">
+<Tooltip title="I’m placed to the top">
   <a>hover me</a>
 </Tooltip>
 ```
@@ -38,6 +38,6 @@ import { Tooltip } from "livod-ui";
   tooltipStyle={{ fontSize: "12px", color: "lightgreen" }}
   title="自定义样式"
 >
-  <a>12px red</a>
+  <a>12px lightgreen</a>
 </Tooltip>
 ```

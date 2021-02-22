@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import TextArea from "./TextArea";
 import "./style/index.less";
 export interface OriginInputProps {
   /** 占位符 */
@@ -10,11 +11,9 @@ export interface OriginInputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const OriginInput: React.FC<OriginInputProps> = ({
-  className = "",
-  hasError = false,
-  ...rest
-}) => {
+const OriginInput: React.FC<OriginInputProps> & {
+  TextArea: typeof TextArea;
+} = ({ className = "", hasError = false, ...rest }) => {
   const classname = useMemo(() => {
     if (className) {
       className = " " + className;
@@ -32,5 +31,7 @@ const OriginInput: React.FC<OriginInputProps> = ({
 };
 
 OriginInput.displayName = "Input";
+
+OriginInput.TextArea = TextArea;
 
 export default OriginInput;

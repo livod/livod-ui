@@ -18,7 +18,5 @@ module.exports = {
   propsParser: require("react-docgen-typescript").withCustomConfig(
     "./tsconfig.json"
   ).parse,
-  components: [
-    "src/components/**/index.tsx",
-  ],
+  components: ["src/components/**/index.tsx"],
 };
