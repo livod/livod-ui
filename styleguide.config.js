@@ -18,14 +18,5 @@ module.exports = {
   propsParser: require("react-docgen-typescript").withCustomConfig(
     "./tsconfig.json"
   ).parse,
-  components: [
-    "src/components/Button/index.tsx",
-    "src/components/Dropdown/index.tsx",
-    "src/components/Input/index.tsx",
-    "src/components/Message/index.tsx",
-    "src/components/Modal/index.tsx",
-    "src/components/Table/index.tsx",
-    "src/components/Tooltip/index.tsx",
-    "src/components/Popover/index.tsx",
-  ],
+  components: ["src/components/**/index.tsx"],
 };
