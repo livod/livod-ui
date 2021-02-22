@@ -26,5 +26,6 @@ module.exports = {
     "src/components/Modal/index.tsx",
     "src/components/Table/index.tsx",
     "src/components/Tooltip/index.tsx",
+    "src/components/Popover/index.tsx",
   ],
 };
