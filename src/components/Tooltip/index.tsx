@@ -16,7 +16,7 @@ interface TooltipProps {
 
 const Tooltip: React.FC<TooltipProps> = ({
   title,
-  placement = "bottom",
+  placement = "top",
   children,
   style,
   tooltipStyle,
