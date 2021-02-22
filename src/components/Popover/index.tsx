@@ -4,22 +4,25 @@ import "./style/index.less";
 
 export type Placement = "bottom" | "top" | "left" | "right";
 
-interface TooltipProps {
-  /** 文字内容 */
+interface PopoverProps {
+  /** 标题内容 */
   title: string;
-  /** tooltip出现的方位 */
+  /** 主体内容 */
+  content?: React.ReactNode;
+  /** Popover出现的方位 */
   placement?: Placement;
   style?: React.CSSProperties;
-  /** tooltip自定义样式 */
-  tooltipStyle?: React.CSSProperties;
+  /** Popover自定义样式 */
+  popoverStyle?: React.CSSProperties;
 }
 
-const Tooltip: React.FC<TooltipProps> = ({
+const Popover: React.FC<PopoverProps> = ({
   title,
   placement = "top",
   children,
   style,
-  tooltipStyle,
+  popoverStyle,
+  content,
 }) => {
   const triggerRef = useRef(null);
   const containerRef = useRef(null);
@@ -32,7 +35,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   };
   useEffect(() => {
     if (show) {
-      containerRef.current.querySelector(".livod-tooltip").style.zIndex = 99;
+      containerRef.current.querySelector(".livod-popover").style.zIndex = 99;
     }
   }, [show]);
   return (
@@ -54,13 +57,14 @@ const Tooltip: React.FC<TooltipProps> = ({
       >
         {({ props, arrowProps, placement }) => {
           return (
-            <div className={"livod-tooltip"} {...props}>
+            <div className={"livod-popover"} {...props}>
               <div
-                className={"livod-tooltip-arrow " + placement}
+                className={"livod-popover-arrow " + placement}
                 {...arrowProps}
               />
-              <div className={"livod-tooltip-body"} style={tooltipStyle}>
-                {title}
+              <div className={"livod-popover-inner"} style={popoverStyle}>
+                <div className="livod-popover-title">{title}</div>
+                <div className="livod-popover-inner-content">{content}</div>
               </div>
             </div>
           );
@@ -70,4 +74,4 @@ const Tooltip: React.FC<TooltipProps> = ({
   );
 };
 
-export default Tooltip;
+export default Popover;

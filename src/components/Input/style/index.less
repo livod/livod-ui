@@ -21,7 +21,19 @@
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   &.has-error {
+    background-color: #fff;
     border-color: #ff4d4f;
+    &:focus {
+      border-color: #ff7875;
+      border-right-width: 1px !important;
+      outline: 0;
+      -webkit-box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
+      box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
+    }
+    &:hover {
+      background-color: #fff;
+      border-color: #ff4d4f;
+    }
   }
   &:hover {
     border-color: #40a9ff;
@@ -34,4 +46,14 @@
     -webkit-box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
     box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
   }
+}
+
+textarea.livod-input {
+  max-width: 100%;
+  height: auto;
+  min-height: 32px;
+  line-height: 1.5715;
+  vertical-align: bottom;
+  -webkit-transition: all 0.3s, height 0s;
+  transition: all 0.3s, height 0s;
 }
