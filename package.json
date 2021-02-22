@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/attackonryan/Livod-UI"
+    "url": "https://github.com/livod/livod-ui"
   },
   "keywords": [
     "ui",
     "livod",
     "livod-ui"
   ],
-  "author": "attackonryan",
+  "author": "livod",
   "license": "ISC",
   "devDependencies": {
     "@types/react": "^17.0.0",
